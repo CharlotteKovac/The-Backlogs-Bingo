@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head> <!--Created By: Charlotte Kovac aka CelestialCthulhu-->
+    <title>Elden Ring Bingo</title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+
+  </head>
+  <body>
+    <div class="intro">
+    <h1>Firebomb Elden Ring Bingo</h1>
+   <!-- <div class="marquee-w"> Deal with later-->
+    <h2>Welcome to Elden Ring Bingo! Featuring The Backlogs!</h2>
+        </div>
+    <div class="ruleset">
+    <h3>Rules:</h3>
+      <ol>
+        <li><strong>
+          If Lemon says/does something that matches a box on the board, mark the board by clicking on the box. If a misclick happens, click the box again to 'unmark'.
+        </li>
+        <li>
+          Once a connecting 5 have been made, take a screenshot of the whole board. Send this screenshot @-ing the mods in Discord. You will also need to type
+          'BINGO!' in chat.
+        </li>
+        <li>
+          Mods will review and comment in chat if the bingo is valid.
+        </li>
+        </strong>
+      </ol>
+    </div>
+    <h4>WARNING: IF YOU RELOAD THE PAGE, YOUR BINGO CARD WILL BE RESET AND A NEW ONE WILL LOAD!</h4>
+    <div>
+      <h3>Bingo Cards Found Here!</h3>
+          <button onclick="generateCard()">Choose Your Card!</button>
+    <br /><br />
+    </div>
+    <div id="colorButtons">
+      <h3>Choose Your Consumable:</h3> <!--POSS USE .QUERYSELECTOR TO MATCH WITH CSS CODE?????? POSS THOUGHT-->
+      <button class="color-button green" onclick="changeColor('green')">Green - Poison Pot</button>
+      <button class="color-button purple" onclick="changeColor('purple')">Purple - Sleep Pot</button>
+      <button class="color-button blue" onclick="changeColor('blue')">Blue - Magic Pot</button>
+      <button class="color-button yellow" onclick="changeColor('yellow')">Yellow - Lightning Pot</button>
+      <button class="color-button orange" onclick="changeColor('orange')">Orange - Rot Pot</button>
+      <button class="color-button red" onclick="changeColor('red')">Red - Fire Pot</button>
+      <button class="color-button gray" onclick="changeColor('gray')">Gray - Oil Pot</button>
+    </div>
+    <br />
+    <div>
+      <table border="1">
+          <thead>
+            <tr>
+              <th scope="col">L</th>
+              <th scope="col">E</th>
+              <th scope="col">M</th>
+              <th scope="col">O</th>
+              <th scope="col">N</th>
+                  <table id="bingoCard"></table>
+                  <script>
+                    var selectedColor = "";
+      // Array of words to populate the bingo card
+      var words = [
+        "Lemon gets lost/Donde the f*ck am I?",
+        "I hate this place/This place sucks, etc.",
+        "Blames Miyazaki",
+        "Compares Elden Ring to other DS games",
+        "Makes Friends in Unlikely Places (gets mauled by creature)",
+        "Thanks, I hate it - sarcasm",
+        "Accepts Fate",
+        "1HP and a Dream!",
+        "Chokes on Drink",
+        "Calls himself the Patience Elemental",
+        "Blames controller/hitbox",
+        "Dies to a Tree Sentinal/Erdtree Avatar",
+        "Take Your Lumps",
+        "Impersonation of Tony, Karl, Melon, etc.",
+        "Okay, New Plan!",
+        "Torrent Dies",
+        "This f*cking game!",
+        "My Waifu",
+        "Old Challenge Run Reference",
+        "Praise the Firebomb Goddess",
+        "Lemon is Older than Chat",
+        "Helldivers Reference",
+        "Wants to play anything else",
+        "Calls them 'souls' instead of 'runes'",
+        "Talks about Chickens",
+        "Sexy Party Solaire Reference",
+        "I have it, I haven't played it",
+        "Majora's Mask Mention",
+        "Descent into Madness/Lemon Distress Sounds",
+        "Sippy Break",
+        "No Clothes Fight",
+        "Out of Context Lemon",
+        "Sit Boo-boo, sit",
+        "Refers to himself as 'Headmaster'",
+        "Boss has 1HP and a Dream!"
+      ];
+
+      function generateCard() {
+        var card = document.getElementById("bingoCard");
+        card.innerHTML = ""; // Clear previous card
+
+        shuffleArray(words);
+
+        var index = 0;
+        for (var i = 0; i < 5; i++) {
+          var row = card.insertRow();
+          for (var j = 0; j < 5; j++) {
+            var cell = row.insertCell();
+            cell.textContent = words[index++];
+            cell.onclick = markNumber;
+          }
+        }
+      }
+
+      function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+      }
+
+      function markNumber() {
+        if (!this.classList.contains("marked")) {
+          this.classList.add("marked");
+          if (selectedColor) {
+            this.classList.add(selectedColor);
+          }
+        } else {
+          this.classList.remove("marked");
+          if (selectedColor) {
+            this.classList.remove(selectedColor);
+          }
+        }
+      }
+      
+
+      function changeColor(color) {
+        selectedColor = color;
+        // Update color for already marked cells
+        document.querySelectorAll(".marked").forEach(function(cell) {
+          cell.className = 'marked'; // Reset to base class plus marked
+          if (selectedColor) {
+            cell.classList.add(selectedColor);
+          }
+        });
+      }
+      
+    </script>
+<h4 id="suffering">Please Enjoy Lemon's Suffering!</h4>
+
+    <br />
+
+    </div>
+    <br />
+    <br />
+    <br />
+  </body>
+  <footer>Created By: CelestialCthulhu. Hope you all enjoy ^_^</footer>
+</html>
